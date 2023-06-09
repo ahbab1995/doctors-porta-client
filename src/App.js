@@ -1,10 +1,17 @@
 import logo from "./logo.svg";
 import "./App.css";
+import Navbar from "./Pages/Shared/Navbar";
+import { Route, Routes } from "react-router";
+import Home from "./Pages/Home/Home";
 
 function App() {
   return (
     <div>
-      <button class="btn btn-primary">Button</button>
+      <Navbar></Navbar>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        
+      </Routes>
     </div>
   );
 }
