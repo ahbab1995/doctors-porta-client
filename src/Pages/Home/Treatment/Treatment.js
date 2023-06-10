@@ -2,10 +2,10 @@ import React from "react";
 import treatment from "../../../assets/images/treatment.png";
 const Treatment = () => {
   return (
-    <div className="hero min-h-screen ">
+    <div className="hero min-h-screen md:mt-10">
       <div className="hero-content flex-col lg:flex-row">
-        <img src={treatment} className="max-w-sm rounded-lg shadow-2xl" />
-        <div>
+        <img src={treatment} className="max-w-sm sm:w-80 rounded-lg shadow-2xl" />
+        <div className="lg:ml-28">
           <h1 className="text-5xl font-bold">
             Exceptional Dental Care, on Your Terms
           </h1>
