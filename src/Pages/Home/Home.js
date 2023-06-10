@@ -3,6 +3,7 @@ import Banner from './Banner/Banner';
 import InfoCards from './InfoCard/InfoCards';
 import Services from './Services/Services';
 import Treatment from './Treatment/Treatment';
+import MakeAppointment from './MakeAppointment/MakeAppointment';
 
 
 const Home = () => {
@@ -12,6 +13,7 @@ const Home = () => {
             <InfoCards></InfoCards>
             <Services></Services>
             <Treatment></Treatment>
+            <MakeAppointment></MakeAppointment>
         </div>
     );
 };

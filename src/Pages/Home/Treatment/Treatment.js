@@ -17,7 +17,7 @@ const Treatment = () => {
             here', making it look like readable English. Many desktop publishing
             packages and web page
           </p>
-          <button className="btn btn-primary">Get Started</button>
+          <button className="btn bg-gradient-to-r from-secondary to-primary uppercase font-bold text-white">Get Started</button>
         </div>
       </div>
     </div>
