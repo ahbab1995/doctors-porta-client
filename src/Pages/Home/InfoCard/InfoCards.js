@@ -17,7 +17,7 @@ const InfoCards = () => {
       name: "Visit our location",
       description: "sylhet,Bangladesh",
       icon: marker,
-      bgClass: "bg-accent",
+      bgClass: "bg-neutral",
     },
     {
       id: 3,

@@ -6,6 +6,7 @@ import Treatment from './Treatment/Treatment';
 import MakeAppointment from './MakeAppointment/MakeAppointment';
 import Testimonial from './Testimonial/Testimonial';
 import ContactUs from './ContactUs/ContactUs';
+import Footer from './Footer/Footer';
 
 
 const Home = () => {
@@ -18,6 +19,7 @@ const Home = () => {
             <MakeAppointment></MakeAppointment>
             <Testimonial></Testimonial>
             <ContactUs></ContactUs>
+            <Footer></Footer>
         </div>
     );
 };
