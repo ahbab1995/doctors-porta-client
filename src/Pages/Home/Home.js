@@ -6,12 +6,12 @@ import Treatment from './Treatment/Treatment';
 import MakeAppointment from './MakeAppointment/MakeAppointment';
 import Testimonial from './Testimonial/Testimonial';
 import ContactUs from './ContactUs/ContactUs';
-import Footer from './Footer/Footer';
+import Footer from '../Shared/Footer';
 
 
 const Home = () => {
     return (
-        <div className='px-12'>
+        <div >
             <Banner></Banner>
             <InfoCards></InfoCards>
             <Services></Services>
