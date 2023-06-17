@@ -1,8 +1,8 @@
 import React from "react";
 
 const Service = ({ service, setTreatment }) => {
- 
   const { name, slots } = service;
+
   return (
     <div className="card lg:max-w-lg bg-base-100 shadow-xl ">
       <div className="card-body text-center">
@@ -26,11 +26,13 @@ const Service = ({ service, setTreatment }) => {
             Book Appointment
           </button> */}
           <label
-                         htmlFor="booking-modal"
-                        disabled={slots.length === 0}
-                        onClick={() => setTreatment(service)}
-                        className="btn btn-sm btn-secondary text-white uppercase bg-gradient-to-r from-secondary to-primary"
-                        >Book Appointment</label>
+            htmlFor="booking_modal"
+            disabled={slots.length === 0}
+            onClick={() => setTreatment(service)}
+            className="btn btn-sm btn-secondary text-white uppercase bg-gradient-to-r from-secondary to-primary"
+          >
+            Book Appointment
+          </label>
         </div>
       </div>
     </div>
