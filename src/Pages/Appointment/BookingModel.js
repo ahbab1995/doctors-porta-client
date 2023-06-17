@@ -1,11 +1,12 @@
+import { format } from "date-fns";
 import React from "react";
 
-const BookingModel = ({ treatment }) => {
+const BookingModel = ({selected, treatment }) => {
   const { name, slots } = treatment;
-
+   
   return (
     <div>
-      <input type="checkbox" id="booking_modal" class="modal-toggle" />
+      <input type="checkbox" id="booking_modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative">
           <label
@@ -14,10 +15,11 @@ const BookingModel = ({ treatment }) => {
           >
             ✕
           </label>
-          <h3 className="text-lg font-bold">{name}</h3>
+          <h3 className="text-lg font-bold text-secondary">{name}</h3>
           <form className="grid grid-cols-1 gap-3 mt-10">
             <input
               type="text"
+              value={format(selected, "PP")}
               disabled
               className="input w-full input-bordered "
             />

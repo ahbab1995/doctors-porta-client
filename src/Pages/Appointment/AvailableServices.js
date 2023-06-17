@@ -28,7 +28,7 @@ const AvailableServices = ({ selected }) => {
           ></Service>
         ))}
       </div>
-      {treatment && <BookingModel treatment={treatment}></BookingModel>}
+      {treatment && <BookingModel selected={selected} treatment={treatment}></BookingModel>}
     </div>
   );
 };
