@@ -9,7 +9,7 @@ const AvailableServices = ({ selected }) => {
   const [treatment, setTreatment] = useState(null);
 
   useEffect(() => {
-    fetch("services.json")
+    fetch("http://localhost:5000/service")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
@@ -28,7 +28,7 @@ const AvailableServices = ({ selected }) => {
           ></Service>
         ))}
       </div>
-      {treatment && <BookingModel selected={selected} treatment={treatment}></BookingModel>}
+      {treatment && <BookingModel setTreatment={setTreatment} selected={selected} treatment={treatment}></BookingModel>}
     </div>
   );
 };

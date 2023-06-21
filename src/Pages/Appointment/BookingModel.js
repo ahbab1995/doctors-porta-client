@@ -1,8 +1,15 @@
 import { format } from "date-fns";
 import React from "react";
 
-const BookingModel = ({selected, treatment }) => {
+const BookingModel = ({selected, treatment,setTreatment }) => {
   const { name, slots } = treatment;
+
+  const handleBooking = (e) => {
+    e.preventDefault()
+    const slot = e.target.slot.value
+    console.log(slot)
+    setTreatment(null)
+  }
    
   return (
     <div>
@@ -16,7 +23,7 @@ const BookingModel = ({selected, treatment }) => {
             ✕
           </label>
           <h3 className="text-lg font-bold text-secondary">{name}</h3>
-          <form className="grid grid-cols-1 gap-3 mt-10">
+          <form onSubmit={handleBooking} className="grid grid-cols-1 gap-3 mt-10">
             <input
               type="text"
               value={format(selected, "PP")}
@@ -26,7 +33,11 @@ const BookingModel = ({selected, treatment }) => {
             <select
               name="slot"
               className="select select-bordered w-full"
-            ></select>
+            >
+              {
+                slots.map(slot => <option value={slot}>{slot}</option>)
+              }
+            </select>
             <input
               name="name"
               type="text"
