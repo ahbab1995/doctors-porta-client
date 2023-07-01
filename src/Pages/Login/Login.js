@@ -1,19 +1,38 @@
 import React from "react";
 import auth from "./../../firebase.init";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import Loading from "../Shared/Loading";
 
 const Login = () => {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+  const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
 
+  const [
+    signInWithEmailAndPassword,
+    user,
+    loading,
+    error,
+  ] = useSignInWithEmailAndPassword(auth);
+  let singnInError; 
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const onSubmit = (data) => console.log(data);
-  if (user) {
-    console.log(user);
+
+  if (gerror || error) {
+    singnInError = <p className="text-red-600 p-3">{error?.message || gerror?.message}</p>
+  }
+
+  if (gloading || loading) {
+    return <Loading></Loading>
+  }
+  const onSubmit = (data) => {
+    console.log(data)
+     signInWithEmailAndPassword(data.email,data.password)
+  };
+  if (guser || user) {
+    console.log(guser);
   }
   return (
     <div className="flex justify-center items-center h-screen">
@@ -30,18 +49,47 @@ const Login = () => {
                 placeholder="Type your Email"
                 className="input input-bordered w-full max-w-xs"
                 {...register("email", {
-                  pattern: /[A-Za-z]{3}/,
-                  message:'error message',
+                  required: {
+                    value: true,
+                    message: "Email is Required",
+                  },
+                  pattern: {
+                    value: /[A-Za-z]{3}/,
+                    message: "Provied a valid email",
+                  },
                 })}
               />
               <label className="label">
-                <span className="label-text-alt">Bottom Left label</span>
+                {errors.email?.type === "required" && (
+                  <p className="label-text-alt text-red-600">
+                    {errors.email.message}
+                  </p>
+                )}
               </label>
+              <input
+                type="password"
+                placeholder="Password"
+                className="input input-bordered w-full max-w-xs"
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: { value: 6, message: 'Password must be 6 characters or longer' }
+              })}
+              />
+              <label className="label">
+                {errors.password?.type === "required" && (
+                  <p className="label-text-alt text-red-600">
+                    {errors.password?.message}
+                  </p>
+                )}
+              </label>
+              {singnInError}
             </div>
 
-          
-
-            <input className="btn  btn-neutral text-white w-full max-w-xs" type="submit" value='LOGIN' />
+            <input
+              className="btn  btn-neutral text-white w-full max-w-xs"
+              type="submit"
+              value="LOGIN"
+            />
           </form>
           <div className="divider">OR</div>
           <button onClick={() => signInWithGoogle()} className="btn ">
