@@ -3,10 +3,12 @@ import auth from "./../../firebase.init";
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import Loading from "../Shared/Loading";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
 
+  const navigate = useNavigate();
   const [
     signInWithEmailAndPassword,
     user,
@@ -30,6 +32,7 @@ const Login = () => {
   const onSubmit = (data) => {
     console.log(data)
      signInWithEmailAndPassword(data.email,data.password)
+     navigate('/appointment')
   };
   if (guser || user) {
     console.log(guser);
@@ -66,6 +69,10 @@ const Login = () => {
                   </p>
                 )}
               </label>
+
+              <label className="label">
+                  <span className="label-text">Password</span>
+                </label>
               <input
                 type="password"
                 placeholder="Password"
@@ -91,6 +98,7 @@ const Login = () => {
               value="LOGIN"
             />
           </form>
+          <p><small>New to Doctors Portal? <Link className="text-primary" to="/signup">Create new account</Link></small></p>
           <div className="divider">OR</div>
           <button onClick={() => signInWithGoogle()} className="btn ">
             CONTINUE WITH GOOGLE
