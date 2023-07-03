@@ -3,12 +3,15 @@ import auth from "./../../firebase.init";
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import Loading from "../Shared/Loading";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
 
   const navigate = useNavigate();
+  const location = useLocation()
+
+  let from = location.state?.from?.pathname || '/';
   const [
     signInWithEmailAndPassword,
     user,
@@ -29,14 +32,15 @@ const Login = () => {
   if (gloading || loading) {
     return <Loading></Loading>
   }
+  if (guser || user) {
+    navigate(from,{replace:true})
+  }
   const onSubmit = (data) => {
     console.log(data)
      signInWithEmailAndPassword(data.email,data.password)
      navigate('/appointment')
   };
-  if (guser || user) {
-    console.log(guser);
-  }
+ 
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="card w-96 bg-base-100 shadow-xl">

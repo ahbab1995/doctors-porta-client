@@ -8,6 +8,9 @@ const Navbar = () => {
   const [user, loading, error] = useAuthState(auth);
 
   const [signOut] = useSignOut(auth);
+  const logout = ()=>{
+    signOut(auth)
+  }
   const menuItems = (
     <>
       <li>
@@ -26,7 +29,7 @@ const Navbar = () => {
         <Link className="font-medium " to="/about">About</Link>
       </li>
       <li>
-        {user? <button className="btn btn-ghost">Sign Out</button> :<Link className="font-medium " to="/login">Login</Link>}
+        {user? <button onClick={logout} className="btn btn-ghost">Sign Out</button> :<Link className="font-medium " to="/login">Login</Link>}
       </li>
     </>
   );
