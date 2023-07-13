@@ -4,6 +4,7 @@ import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfil
 import { useForm } from "react-hook-form";
 import Loading from "../Shared/Loading";
 import { Link, useNavigate } from 'react-router-dom';
+import useToken from '../../hooks/useToken';
 
 
 const Signup = () => {
@@ -11,7 +12,7 @@ const Signup = () => {
 
     const [updateProfile, updating, updateerror] = useUpdateProfile(auth);
 
-      const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [
         createUserWithEmailAndPassword,
@@ -26,6 +27,9 @@ const Signup = () => {
       formState: { errors },
       handleSubmit,
     } = useForm();
+
+    const [token] = useToken(guser || user)
+
   
     if (gerror || error || updateerror) {
       singnInError = <p className="text-red-600 p-3">{error?.message || gerror?.message}</p>
@@ -35,16 +39,16 @@ const Signup = () => {
       return <Loading></Loading>
     }
     const onSubmit = async(data) => {
-      console.log(data)
+      // console.log(data)
       await createUserWithEmailAndPassword(data.email,data.password)
         const success = await updateProfile({ displayName:data.name });
         if (success) {
           console.log('User update')
         }
-        navigate('/appointment')
+        // navigate('/appointment')
     };
-    if (guser || user) {
-      console.log(guser || user);
+    if (token) {
+      navigate('/appointment')
     }
     return (
         <div className="flex justify-center items-center h-screen">

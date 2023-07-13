@@ -15,10 +15,10 @@ const Dashboard = () => {
         </div> 
         <div className="drawer-side">
           <label htmlFor="dashboard-drawer-2" className="drawer-overlay"></label> 
-          <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
+          <ul className="menu p-4 w-70 h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
-            <li><Link to='/dashboard'>Sidebar Item 1</Link></li>
-            <li><Link to='/dashboard/review'>Sidebar Item 2</Link></li>
+            <li><Link to='/dashboard'>My Appointment</Link></li>
+            <li><Link to='/dashboard/review'>My Review</Link></li>
           </ul>
         
         </div>

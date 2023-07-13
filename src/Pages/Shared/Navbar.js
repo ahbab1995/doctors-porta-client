@@ -88,7 +88,7 @@ const Navbar = () => {
           </div>
           <h2 className="btn btn-ghost normal-case text-xl">Doctors Portal</h2>
         </div>
-        <div className="navbar-end hidden lg:flex">
+        <div className="navbar-end justify-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{menuItems}</ul>
         </div>
         <div className="navbar-end">

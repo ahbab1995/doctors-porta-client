@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import auth from '../../firebase.init';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const MyAppointment = () => {
+
+const [appointment, setAppointment] = useState([]);
+
+const [user] = useAuthState(auth);
+
+useEffect(() => {
+ if (user) {
+  fetch(`http://localhost:5000/booking?patient${user.email}`)
+  .then(res=>res.json())
+  .then(data=>setAppointment(data))
+ }
+}, [user]);
+
     return (
         <div className="overflow-x-auto">
+          <h1>Appointment{appointment.length}</h1>
   <table className="table">
+    
     {/* head */}
     <thead>
       <tr>
@@ -15,13 +32,13 @@ const MyAppointment = () => {
       </tr>
     </thead>
     <tbody>
-      {/* row 1 */}
-      <tr>
+      {appointment.map(a=><tr>
         <th>1</th>
-        <td>Cy Ganderton</td>
+        <td>{a.patientName}</td>
         <td>Quality Control Specialist</td>
         <td>Blue</td>
-      </tr>
+      </tr>)}
+     
     
     </tbody>
   </table>
