@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import Loading from "../Shared/Loading";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import useToken from "../../hooks/useToken";
 
 const Login = () => {
   const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth);
@@ -21,11 +22,13 @@ const Login = () => {
   ] = useSignInWithEmailAndPassword(auth);
   let singnInError; 
 
+  const [token] = useToken(guser || user)
+
   useEffect(() => {
-    if (guser || user) {
+    if (token) {
       navigate(from,{replace:true})
     }
-  }, [guser,user,navigate,from]);
+  }, [token,navigate,from]);
 
   const {
     register,
@@ -42,7 +45,7 @@ const Login = () => {
   }
   
   const onSubmit = (data) => {
-    console.log(data)
+    // console.log(data)
      signInWithEmailAndPassword(data.email,data.password)
      navigate('/appointment')
   };
